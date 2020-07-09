@@ -100,6 +100,11 @@ public class KorisnikEntity implements Serializable {
 	public void setRoles(Set<UlogaEntity> uloge) {
 		this.uloge = uloge;
 	}
+
+	public void setUloga(UlogaEntity ulogaEntity) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 

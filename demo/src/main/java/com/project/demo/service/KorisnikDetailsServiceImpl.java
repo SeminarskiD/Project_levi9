@@ -9,7 +9,7 @@ import com.project.demo.repository.KorisnikRepository;
 import com.project.example.mapper.KorisnikMapper;
 
 @Service
-public class KorisnikServisImpl implements KorisnikServis {
+public class KorisnikDetailsServiceImpl implements KorisnikDetailsService {
 
 	@Autowired
 	KorisnikRepository korisnikR;

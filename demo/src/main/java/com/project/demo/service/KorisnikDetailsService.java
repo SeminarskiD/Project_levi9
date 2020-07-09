@@ -2,7 +2,7 @@ package com.project.demo.service;
 
 import com.project.demo.dto.KorisnikDto;
 
-public interface KorisnikServis {
+public interface KorisnikDetailsService {
 
 	KorisnikDto save(KorisnikDto korisnikDto);
 }

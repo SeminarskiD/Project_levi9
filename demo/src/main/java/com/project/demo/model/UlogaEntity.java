@@ -26,52 +26,32 @@ public class UlogaEntity implements Serializable {
 	private Integer idUloga;
 
 	@Enumerated(EnumType.STRING)
-	private EUloga nazivUloga;
+	private EUloga name;
 
-	// bi-directional many-to-one association to Korisnik
-	@OneToMany(mappedBy = "uloga")
-	private List<KorisnikEntity> korisniks;
 
 	public UlogaEntity() {
 
 	}
 	
-	public int getIdUloga() {
-		return this.idUloga;
+
+	public Integer getIdUloga() {
+		return idUloga;
 	}
 
-	public void setIdUloga(int idUloga) {
+
+	public void setIdUloga(Integer idUloga) {
 		this.idUloga = idUloga;
 	}
 
-	public EUloga getNazivUloga() {
-		return this.nazivUloga;
+
+	public EUloga getName() {
+		return name;
 	}
 
-	public void setNazivUloga(EUloga nazivUloga) {
-		this.nazivUloga = nazivUloga;
+
+	public void setName(EUloga name) {
+		this.name = name;
 	}
 
-	public List<KorisnikEntity> getKorisniks() {
-		return this.korisniks;
-	}
-
-	public void setKorisniks(List<KorisnikEntity> korisniks) {
-		this.korisniks = korisniks;
-	}
-
-	public KorisnikEntity addKorisnik(KorisnikEntity korisnik) {
-		getKorisniks().add(korisnik);
-		korisnik.setUloga(this);
-
-		return korisnik;
-	}
-
-	public KorisnikEntity removeKorisnik(KorisnikEntity korisnik) {
-		getKorisniks().remove(korisnik);
-		korisnik.setUloga(null);
-
-		return korisnik;
-	}
 
 }

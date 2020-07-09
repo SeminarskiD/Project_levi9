@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.demo.dto.KorisnikDto;
-import com.project.demo.service.KorisnikServis;
+import com.project.demo.service.KorisnikDetailsService;
 
 @RestController
 @RequestMapping("/user")
 public class KorisnikController {
 	
 	@Autowired
-	KorisnikServis korisnikS;
+	KorisnikDetailsService korisnikS;
 	
 	@PreAuthorize("hasRole('administrator')")
 	@PostMapping(path = "", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
