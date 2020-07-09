@@ -4,12 +4,16 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "roles")
 public class UlogaEntity implements Serializable {
 
 	/**
@@ -18,10 +22,11 @@ public class UlogaEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idUloga;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer idUloga;
 
-	private String nazivUloga;
+	@Enumerated(EnumType.STRING)
+	private EUloga nazivUloga;
 
 	// bi-directional many-to-one association to Korisnik
 	@OneToMany(mappedBy = "uloga")
@@ -39,11 +44,11 @@ public class UlogaEntity implements Serializable {
 		this.idUloga = idUloga;
 	}
 
-	public String getNazivUloga() {
+	public EUloga getNazivUloga() {
 		return this.nazivUloga;
 	}
 
-	public void setNazivUloga(String nazivUloga) {
+	public void setNazivUloga(EUloga nazivUloga) {
 		this.nazivUloga = nazivUloga;
 	}
 
