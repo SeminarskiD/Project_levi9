@@ -16,7 +16,7 @@ public class KorisnikDetailsServiceImpl implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		KorisnikEntity korisnik = korisnikRepository.findByUsername(username)
-				.orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + username));
+				.orElseThrow(() -> new UsernameNotFoundException("Nema korisnika sa username: " + username));
 
 		return KorisnikDetailsImpl.build(korisnik);
 	}

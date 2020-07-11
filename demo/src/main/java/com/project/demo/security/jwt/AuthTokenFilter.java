@@ -45,16 +45,16 @@ public class AuthTokenFilter extends OncePerRequestFilter{
 				SecurityContextHolder.getContext().setAuthentication(authentication);
 			}
 		} catch (Exception e) {
-			logger.error("Cannot set user authentication: {}", e);
+			logger.error("Nije moguce podesiti autentifikaciju korisnika: {}", e);
 		}
 
 		filterChain.doFilter(request, response);
 	}
 
 	private String parseJwt(HttpServletRequest request) {
-		String headerAuth = request.getHeader("Authorization");
+		String headerAuth = request.getHeader("Ovlasecenje");
 
-		if (StringUtils.hasText(headerAuth) && headerAuth.startsWith("Bearer ")) {
+		if (StringUtils.hasText(headerAuth) && headerAuth.startsWith("Nosilac ")) {
 			return headerAuth.substring(7, headerAuth.length());
 		}
 

@@ -77,16 +77,16 @@ public class AuthController {
 		if (userRepository.existsByUsername(signUpRequest.getUsername())) {
 			return ResponseEntity
 					.badRequest()
-					.body(new MessageResponse("Error: Username is already taken!"));
+					.body(new MessageResponse("Greska: Korisnicko ime je zauzeto!"));
 		}
 
 		if (userRepository.existsByEmail(signUpRequest.getEmail())) {
 			return ResponseEntity
 					.badRequest()
-					.body(new MessageResponse("Error: Email is already in use!"));
+					.body(new MessageResponse("Error: Email je zauzet!"));
 		}
 
-		// Create new user's account
+		// Kreiranje novog naloga
 		KorisnikEntity user = new KorisnikEntity(signUpRequest.getUsername(), 
 							 signUpRequest.getEmail(),
 							 encoder.encode(signUpRequest.getPassword()));
@@ -96,21 +96,21 @@ public class AuthController {
 
 		if (strRoles == null) {
 			UlogaEntity userRole = roleRepository.findByName(EUloga.ROLE_USER)
-					.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+					.orElseThrow(() -> new RuntimeException("Greska: Uloga nije pronadjenja ."));
 			roles.add(userRole);
 		} else {
 			strRoles.forEach(role -> {
 				switch (role) {
 				case "admin":
 					UlogaEntity adminRole = roleRepository.findByName(EUloga.ROLE_ADMIN)
-							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+							.orElseThrow(() -> new RuntimeException("Greska: Uloga nije pronadjenja "));
 					roles.add(adminRole);
 
 					break;
 
 				default:
 					UlogaEntity userRole = roleRepository.findByName(EUloga.ROLE_USER)
-							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+							.orElseThrow(() -> new RuntimeException("Greska: Uloga nije pronadjenja "));
 					roles.add(userRole);
 				}
 			});
@@ -119,6 +119,6 @@ public class AuthController {
 		user.setRoles(roles);
 		userRepository.save(user);
 
-		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+		return ResponseEntity.ok(new MessageResponse("Korisnik je uspesno registrovan"));
 	}
 }
